@@ -4,16 +4,17 @@ This is my improved version of the previous PDF merger. Copy several pdf files (
 
 ```py
 syntax = {
-    "MOD_CW":         re.compile(r'\+'),
-    "MOD_CCW":        re.compile(r'\-'),
-    "MOD_180":        re.compile(r'\='),
-    "FILE":           re.compile(r'[a-zA-Z0-9]'),
-    "RANGE":          re.compile(r'\([a-zA-Z0-9]\-[a-zA-Z0-9]\)'),
-    "FILE_PART_ST":   re.compile(r'[a-zA-Z0-9]\[\d+-\]'),
-    "FILE_PART_ED":   re.compile(r'[a-zA-Z0-9]\[-\d+\]'),
+    "MOD_CW": re.compile(r'\+'),
+    "MOD_CCW": re.compile(r'\-'),
+    "MOD_180": re.compile(r'\='),
+    "FILE": re.compile(r'[a-zA-Z0-9]'),
+    "RANGE": re.compile(r'\([a-zA-Z0-9]\-[a-zA-Z0-9]\)'),
+    "FILE_PART_ST": re.compile(r'[a-zA-Z0-9]\[\d+-\]'),
+    "FILE_PART_ED": re.compile(r'[a-zA-Z0-9]\[-\d+\]'),
     "FILE_PART_STED": re.compile(r'[a-zA-Z0-9]\[\d+-\d+\]'),
-    "OUTPUT":         re.compile(r'\{[a-zA-Z0-9]+\}'),
-    "DELETE":         re.compile(r'\![a-zA-Z0-9]'),
+    "OUTPUT": re.compile(r'\{[a-zA-Z0-9]+\}'),
+    "DELETE": re.compile(r'\![a-zA-Z0-9]'),
+    "SHOW": re.compile(r'\@'),
 }
 ```
 
@@ -41,6 +42,10 @@ It specifies the output file name. For example, `{final}` means the output file 
 
 It specifies a file to be deleted from the `files` directory while merging. For example, `!b` means the file labeled `[b]` will be deleted while merging. Note that the command runs from left to right, so if you have `!bb`, the file will be deleted before being added to the merged output, resulting in an error.
 
+### `SHOW`
+
+It is simply `@`. When this token is encountered, the program will open the final output in your default PDF viewer after merging.
+
 ### Using modifiers and ranges
 
 You can combine modifiers and ranges. For example, `+(a-c)` means files `[a]`, `[b]`, and `[c]` will be rotated clockwise before being added to the merged output.  `-6[2-4]` means file `[6]` from page 2 to page 4 will be rotated counter-clockwise before being added to the merged output.
@@ -55,4 +60,4 @@ If you have files `example1.pdf`, `example2.pdf`, and `example3.pdf` in the `fil
 [2]: example3.pdf
 ```
 
-You can enter the string `+0(1-2)!2{merged}` to rotate `example1.pdf` clockwise, add `example2.pdf` and `example3.pdf` as they are, delete `example3.pdf`, and output the merged file as `merged.pdf`.
+You can enter the string `+0(1-2)!2{merged}@` to rotate `example1.pdf` clockwise, add `example2.pdf` and `example3.pdf` as they are, delete `example3.pdf`, and output the merged file as `merged.pdf`. The final output `merged.pdf` will then open in your default PDF viewer.

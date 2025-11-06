@@ -58,6 +58,7 @@ def main():
     
     ori = 0
     output = "output"
+    show_output = False
     
     for i in range(n):
         print(box_string(f"[{i+1:>{l}}] ({time_format(time.time() - start_time)})\nClass: {user_input[i][0]}\nToken: {user_input[i][1]}"))
@@ -113,19 +114,28 @@ def main():
             file_path = files[label2idx(file_char)]
             os.remove(file_path)
             
-    if len(cache) == 0:
-        print("No files to merge.")
-        return
+        elif token[0] == "SHOW":
+            show_output = True
+            
+    # if len(cache) == 0:
+    #     print("No files to merge.")
+    #     return
             
     if output == "":
         print("No output filename specified. Using default 'output.pdf'.")
         output = "output"
+    
+    output_file = f"files/{output}.pdf"
         
     print(f"Merging files into 'files/{output}.pdf'")
-    cache.merge(f"files/{output}.pdf")
+    cache.merge(output_file)
     
     print("Clearing cache")
     cache.clear()
+    
+    if show_output:
+        os.startfile(os.path.normpath(output_file))
+    
     
 if __name__ == "__main__":
     main()

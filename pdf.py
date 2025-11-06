@@ -20,6 +20,9 @@ class FileCache:
         self.n = 0
         
     def merge(self, output_name: str):
+        if len(self) == 0:
+            return
+        
         writer = PyPDF2.PdfWriter()
         for name in self.cache:
             reader = PyPDF2.PdfReader(name)

@@ -11,6 +11,7 @@ syntax = {
     "FILE_PART_STED": re.compile(r'[a-zA-Z0-9]\[\d+-\d+\]'),
     "OUTPUT": re.compile(r'\{[a-zA-Z0-9]+\}'),
     "DELETE": re.compile(r'\![a-zA-Z0-9]'),
+    "SHOW": re.compile(r'\@'),
 }
 
 syntax_ext = {
@@ -24,6 +25,7 @@ syntax_ext = {
     "FILE_PART_STED": r'([a-zA-Z0-9])\[(\d+)-(\d+)\]',
     "OUTPUT": r'\{([a-zA-Z0-9]+)\}',
     "DELETE": r'\!([a-zA-Z0-9])',
+    "SHOW": r'(\@)',
 }
 
 def parse_token(tok: tuple[str, str]) -> tuple:
@@ -33,7 +35,7 @@ def parse_token(tok: tuple[str, str]) -> tuple:
         if name == k:
             m = re.match(v, val)
             if not m:
-                raise ValueError(f"Token '{val}' does not match pattern '{v}'")
+                raise ValueError(f"Token '{val}' does not match pattern for '{name}'")
             return (name, *m.groups())
         
 def parse(s: str) -> list:
