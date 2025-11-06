@@ -60,4 +60,4 @@ If you have files `example1.pdf`, `example2.pdf`, and `example3.pdf` in the `fil
 [2]: example3.pdf
 ```
 
-You can enter the string `+0(1-2)!2{merged}@` to rotate `example1.pdf` clockwise, add `example2.pdf` and `example3.pdf` as they are, delete `example3.pdf`, and output the merged file as `merged.pdf`. The final output `merged.pdf` will then open in your default PDF viewer.
+You can enter the string `+0[6-7](1-2)!2{merged}@` to rotate pages 6 to 7 of `example1.pdf` clockwise, add `example2.pdf` and `example3.pdf` as they are, delete `example3.pdf`, and output the merged file as `merged.pdf`. The final output `merged.pdf` will then open in your default PDF viewer.
