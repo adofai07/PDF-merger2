@@ -48,8 +48,8 @@ class File:
         writer = PyPDF2.PdfWriter()
         
         total_pages = len(reader.pages)
-        start_page = self.st if self.st is not None else 0
-        end_page = self.ed if self.ed is not None else total_pages - 1
+        start_page = self.st - 1 if self.st is not None else 0
+        end_page = self.ed - 1 if self.ed is not None else total_pages - 1
         
         for i in range(start_page, end_page + 1):
             page = reader.pages[i]
