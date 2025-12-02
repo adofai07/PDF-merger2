@@ -91,6 +91,12 @@ def main():
                 file_paths.append(files[j])
             FileRange(cache, ori, file_paths).pdf()
             
+        elif token[0] == "FILE_PART":
+            file_char = token[1]
+            page_num = int(token[2])
+            file_path = files[label2idx(file_char)]
+            File(cache, file_path, ori, st=page_num, ed=page_num).pdf()
+            
         elif token[0] == "FILE_PART_ST":
             file_char = token[1]
             start_page = int(token[2])
