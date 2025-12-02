@@ -15,6 +15,10 @@ def main():
             zip_ref.extractall("files")
         os.remove(zip_file)
         
+    for i in glob.glob("files/*"):
+        if not i.endswith(".pdf"):
+            os.remove(i)
+        
     files = glob.glob("files/*.pdf")
     cache = FileCache()
     
@@ -114,6 +118,13 @@ def main():
             file_path = files[label2idx(file_char)]
             os.remove(file_path)
             
+        elif token[0] == "DELETE_RANGE":
+            start_char = token[1]
+            end_char = token[2]
+            for j in range(label2idx(start_char), label2idx(end_char) + 1):
+                file_path = files[j]
+                os.remove(file_path)
+            
         elif token[0] == "SHOW":
             show_output = True
             
@@ -139,4 +150,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-    time.sleep(3)

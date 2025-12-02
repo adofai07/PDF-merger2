@@ -11,6 +11,7 @@ syntax = {
     "FILE_PART_STED": re.compile(r'[a-zA-Z0-9]\[\d+-\d+\]'),
     "OUTPUT": re.compile(r'\{[a-zA-Z0-9]+\}'),
     "DELETE": re.compile(r'\![a-zA-Z0-9]'),
+    "DELETE_RANGE": re.compile(r'\!\([a-zA-Z0-9]\-[a-zA-Z0-9]\)'),
     "SHOW": re.compile(r'\@'),
 }
 
@@ -25,6 +26,7 @@ syntax_ext = {
     "FILE_PART_STED": r'([a-zA-Z0-9])\[(\d+)-(\d+)\]',
     "OUTPUT": r'\{([a-zA-Z0-9]+)\}',
     "DELETE": r'\!([a-zA-Z0-9])',
+    "DELETE_RANGE": r'\!\(([a-zA-Z0-9])\-([a-zA-Z0-9])\)',
     "SHOW": r'(\@)',
 }
 
